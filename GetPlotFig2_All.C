@@ -141,7 +141,7 @@ void GetPlotFig2_All(){
  } 
 
 
- TFile* fhep_cms = new TFile("/Users/junleekim/RIDGE/Macro_v2/HEPData/CMSResults.root","read");
+ TFile* fhep_cms = new TFile("data/CMSResults.root","read");
  TGraphAsymmErrors* ghep_cms[nMult][nPtTrig];
  for(int i=0;i<nMult;i++){
         for(int j=0;j<nPtTrig;j++){
