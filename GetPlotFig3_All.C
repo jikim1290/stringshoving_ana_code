@@ -152,7 +152,7 @@ void GetPlotFig3_All(){
         "g=3, pTcut=2.25",
         "g=3, pTcut=2.5" };
 
- TFile* fhep_cms = new TFile("/Users/junleekim/RIDGE/Macro_v2/HEPData/CMSResults.root","read"); //33, 35
+ TFile* fhep_cms = new TFile("data/CMSResults.root","read"); //33, 35
  TGraphAsymmErrors* ghep_cms = (TGraphAsymmErrors*)fhep_cms->Get("Table 33/Graph1D_y1");
  ghep_cms->GetXaxis()->SetRangeUser(0,6);
 

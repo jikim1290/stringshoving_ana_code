@@ -177,7 +177,7 @@ void GetPlotFig3_All_lowmult(){
 	"String Shoving, g=6, no MPI",
 	"String Shoving, g=7, no MPI"};
 
- TFile* fhep_cms = new TFile("/Users/junleekim/RIDGE/Macro_v2/HEPData/CMSResults.root","read"); //33, 35
+ TFile* fhep_cms = new TFile("data/CMSResults.root","read"); //33, 35
  TGraphAsymmErrors* ghep_cms = (TGraphAsymmErrors*)fhep_cms->Get("Table 33/Graph1D_y1");
  ghep_cms->GetXaxis()->SetRangeUser(0,6);
  ghep_cms->SetTitle("");

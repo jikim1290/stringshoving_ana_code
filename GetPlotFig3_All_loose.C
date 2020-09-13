@@ -163,7 +163,7 @@ void GetPlotFig3_All_loose(){
 	"String Shoving, g=5, p_{T}<2.25 GeV/c, N_{ch}>90",
 	"String Shoving, g=5, p_{T}<2.5 GeV/c, N_{ch}>90"};
 
- TFile* fhep_cms = new TFile("/Users/junleekim/RIDGE/Macro_v2/HEPData/CMSResults.root","read"); //33, 35
+ TFile* fhep_cms = new TFile("data/CMSResults.root","read"); //33, 35
  TGraphAsymmErrors* ghep_cms = (TGraphAsymmErrors*)fhep_cms->Get("Table 33/Graph1D_y1");
  ghep_cms->GetXaxis()->SetRangeUser(0,6);
  ghep_cms->SetTitle("");
