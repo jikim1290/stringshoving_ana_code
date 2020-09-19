@@ -18,7 +18,7 @@ int MultMax[nMult] = {1000};
 
 const int nBin_for_ntrig = 50;
 
-void GetPlotFig3_All_loose(){
+void GetPlotFig3_ForPaper(){
 
  const int nfiles = 8;
 
