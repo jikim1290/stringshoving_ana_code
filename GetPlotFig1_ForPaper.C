@@ -38,9 +38,9 @@ const int nPtTrig = 1;
 float pTMin[nPtTrig] = { 1.0 };
 float pTMax[nPtTrig] = { 2.0 };
 int MultMin[nMult] = { 0, 100 };
-int MultMax[nMult] = {20, 1000};
+int MultMax[nMult] = {20, 120};
 
-const int nBin_for_ntrig = 25;
+const int nBin_for_ntrig = 50;
 
 void GetPlotFig1_ForPaper(){
 
@@ -73,7 +73,7 @@ void GetPlotFig1_ForPaper(){
  TFile* fin;
 
  for(int f=0;f<nfiles;f++){
-        fin = new TFile(Form("./data/output_set%02d_grp%03d_ana2.root",set_num[f],grp_num[f]),"read");
+        fin = new TFile(Form("./data/output_set%02d_grp%03d_ana0.root",set_num[f],grp_num[f]),"read");
 
         for(int i=0;i<nBin_for_ntrig;i++){
                 hNTrig[f][i] = (TH1D*)fin->Get(Form("hNTrig_%d",i));
@@ -84,8 +84,8 @@ void GetPlotFig1_ForPaper(){
                 hNTrigMerged[f][i]->SetName(Form("hNTrigNorm_%d_%d",f,i));
                 hNTrigMerged[f][i]->Reset();
                 for(int j=0;j<nBin_for_ntrig;j++){
-//			if( j*5 + 2.5 > MultMin[i] && j*5 + 2.5 < MultMax[i] ){
-			if( j*10 + 5 > MultMin[i] && j*10 + 5 < MultMax[i] ){
+			if( j*5 + 2.5 > MultMin[i] && j*5 + 2.5 < MultMax[i] ){
+//			if( j*10 + 5 > MultMin[i] && j*10 + 5 < MultMax[i] ){
                                 hNTrigMerged[f][i]->Add( hNTrig[f][j],1 );
                         }
                 }
@@ -93,12 +93,12 @@ void GetPlotFig1_ForPaper(){
 
         for(int i=0;i<nMult;i++){
                 for(int j=0;j<nPtTrig;j++){
-                        hCorr_Fig2[f][i][j] = (TH2D*)fin->Get(Form("hCorr_Fig4_%d",i));
-                        hCorrMixing_Fig2[f][i][j] = (TH2D*)fin->Get(Form("hCorrMixing_Fig4_%d",i));
+                        hCorr_Fig2[f][i][j] = (TH2D*)fin->Get(Form("hCorr_Fig2_%d_1",i*2));
+                        hCorrMixing_Fig2[f][i][j] = (TH2D*)fin->Get(Form("hCorrMixing_Fig2_%d_1",i*2));
                         hC[f][i][j] = (TH2D*)hCorr_Fig2[f][i][j]->Clone();
 
-                        hCorr_Fig2[f][i][j]->SetName(Form("hCorr_Fig4_%d_%d",f,i));
-                        hCorrMixing_Fig2[f][i][j]->SetName(Form("hCorrMixing_Fig4_%d_%d",f,i));
+                        hCorr_Fig2[f][i][j]->SetName(Form("hCorr_Fig2_%d_%d",f,i));
+                        hCorrMixing_Fig2[f][i][j]->SetName(Form("hCorrMixing_Fig2_%d_%d",f,i));
                         hC[f][i][j]->SetName(Form("hC_%d_%d",f,i));
 
 
@@ -158,7 +158,7 @@ void GetPlotFig1_ForPaper(){
  latex->SetTextFont(22);
 
  TCanvas* cind = new TCanvas("cind","cind",800,600);
- gPad->SetLeftMargin(0.14);
+ gPad->SetLeftMargin(0.17);
  gStyle->SetOptStat(0);
 
  TCanvas* c = new TCanvas("c","c",1000,700);
@@ -175,7 +175,7 @@ void GetPlotFig1_ForPaper(){
 			cind->SaveAs(Form("figs_paper/corr_%d_%d_%d.pdf",f,i,j));
 
 			c->cd(f*2+i+1);
-			gPad->SetLeftMargin(0.14);
+			gPad->SetLeftMargin(0.2);
 			SetStyle( hC[f][i][j] );
 			hC[f][i][j]->Draw("surf1");
 			latex->DrawLatexNDC(0.05,0.95,modname[f]);
